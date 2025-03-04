@@ -1,0 +1,32 @@
+site_name: SunSeaLucky's Note
+theme:
+    name: terminal
+    palette: pink
+
+markdown_extensions:
+    - pymdownx.highlight: # Code Block
+        linenums: true        
+        line_spans: __span
+        pygments_lang_class: true
+    - pymdownx.inlinehilite # Code Block
+    - pymdownx.snippets # Code Block
+    - pymdownx.superfences: # Mermaid
+        custom_fences:
+            - name: mermaid
+              class: mermaid
+              format: !!python/name:pymdownx.superfences.fence_code_format
+    - pymdownx.arithmatex: # KaTeX
+        generic: true
+extra_javascript:
+    - javascripts/katex.js
+    - https://unpkg.com/katex@0/dist/katex.min.js
+    - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+extra_css:
+    - https://unpkg.com/katex@0/dist/katex.min.css
+    - css/style.css
+
+nav:
+    - 首页: index.md
+    - 深度伪造: 
+        - 笔记: deepfake/note/main.md
+        - 实验: deepfake/experiment/main.md

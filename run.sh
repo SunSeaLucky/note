@@ -1,0 +1,2 @@
+cd note
+mkdocs serve
