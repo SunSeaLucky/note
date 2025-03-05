@@ -1,0 +1,980 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../deepfake/experiment/main/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>笔记 - SunSeaLucky's Note</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ict" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SunSeaLucky&#39;s Note" class="md-header__button md-logo" aria-label="SunSeaLucky's Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SunSeaLucky's Note
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              笔记
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../deepfake/note/main/" class="md-tabs__link">
+          
+  
+  深度伪造
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  ICT
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SunSeaLucky&#39;s Note" class="md-nav__button md-logo" aria-label="SunSeaLucky's Note" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SunSeaLucky's Note
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    深度伪造
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            深度伪造
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deepfake/note/main/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deepfake/experiment/main/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    实验
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    ICT
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            ICT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    笔记
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    笔记
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2024-mindspore" class="md-nav__link">
+    <span class="md-ellipsis">
+      2024 年国赛试题 MindSpore 部分内容研究
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2024 年国赛试题 MindSpore 部分内容研究">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      任务一
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      实践案例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实践案例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      计算机视觉
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="计算机视觉">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resnet-50" class="md-nav__link">
+    <span class="md-ellipsis">
+      ResNet 50 图像分类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vision-transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vision Transformer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2024-mindspore" class="md-nav__link">
+    <span class="md-ellipsis">
+      2024 年国赛试题 MindSpore 部分内容研究
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2024 年国赛试题 MindSpore 部分内容研究">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      任务一
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      实践案例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实践案例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      计算机视觉
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="计算机视觉">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resnet-50" class="md-nav__link">
+    <span class="md-ellipsis">
+      ResNet 50 图像分类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vision-transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vision Transformer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ict">ICT 实验笔记</h1>
+<h2 id="2024-mindspore">2024 年国赛试题 MindSpore 部分内容研究</h2>
+<h3 id="_1">任务一</h3>
+<p>主要目的是训练一个可以识别开发板上能够标出蓝色区域的模型。</p>
+<p><img alt="alt text" src="../image-6.png" /></p>
+<ul>
+<li><strong>考点一</strong> 实验云环境准备</li>
+</ul>
+<p>即在 ModelArts 的 <a href="https://console.huaweicloud.com/modelarts/?region=cn-north-4#/dev-container">Notebook</a> 下购买 Notebook 实例，按照其要求配置环境。</p>
+<ul>
+<li><strong>考点二</strong> 填写数据预处理部分的缺失代码</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">预说明的部分</p>
+<p>实验数据集分为原始数据集和预处理后的数据集</p>
+<ul>
+<li>原始数据集为 raw data，属于 coco 格式数据集，包含图片 image 以及 annotation 文件。原始数据集不能直接使用，需要经过数据预处理。</li>
+<li>预处理后的数据集为 data，存放预处理后的数据集，包含图片 image 和标签 mask，用于模型训练和推理。</li>
+</ul>
+<p>raw_data 的目录结构：</p>
+<p><img alt="alt text" src="../image-7.png" /></p>
+</div>
+<p>首先是填写 <code>preprocess_dataset.py</code> 的三处空缺。第一处空缺如下：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="c1">#1、填写参数标签</span>
+</span><span id="__span-0-2"><span class="c1">#------------------**************</span>
+</span><span id="__span-0-3"><span class="n">anno_json</span> <span class="o">=</span>   <span class="c1"># annotaion json文件路径</span>
+</span><span id="__span-0-4"><span class="n">coco_cls</span> <span class="o">=</span>   <span class="c1"># 数据类别80+1类的名字</span>
+</span><span id="__span-0-5"><span class="n">coco_dir</span> <span class="o">=</span>   <span class="c1"># 数据集路径</span>
+</span><span id="__span-0-6"><span class="n">save_dir</span> <span class="o">=</span>   <span class="c1"># 最终结果保存路径    </span>
+</span><span id="__span-0-7"><span class="c1">#--------------------***********************</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span id="__span-1-2">    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Train the UNet on images and target masks&#39;</span><span class="p">,</span>
+</span><span id="__span-1-3">                                     <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentDefaultsHelpFormatter</span><span class="p">)</span>
+</span><span id="__span-1-4">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="s1">&#39;--data_url&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s1">&#39;data_url&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;data/&#39;</span><span class="p">,</span>
+</span><span id="__span-1-5">                        <span class="n">help</span><span class="o">=</span><span class="s1">&#39;save data directory&#39;</span><span class="p">)</span>
+</span><span id="__span-1-6">    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span><span id="__span-1-7">    <span class="n">preprocess_dataset</span><span class="p">(</span><span class="n">cfg_unet</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">data_url</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>可以看到程序首先执行到 <code>preprocess_dataset()</code> 函数，如下：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><span class="k">def</span><span class="w"> </span><span class="nf">preprocess_dataset</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">):</span>
+</span><span id="__span-2-2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Select preprocess function.&quot;&quot;&quot;</span>
+</span><span id="__span-2-3">    <span class="k">if</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;cell_nuclei&quot;</span><span class="p">:</span>
+</span><span id="__span-2-4">        <span class="n">preprocess_cell_nuclei_dataset</span><span class="p">({</span><span class="s2">&quot;data_dir&quot;</span><span class="p">:</span> <span class="n">data_dir</span><span class="p">})</span>
+</span><span id="__span-2-5">    <span class="k">elif</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;coco&quot;</span><span class="p">:</span>
+</span><span id="__span-2-6">        <span class="k">if</span> <span class="s1">&#39;split&#39;</span> <span class="ow">in</span> <span class="n">cfg</span> <span class="ow">and</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">:</span>
+</span><span id="__span-2-7">            <span class="n">train_data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">)</span>
+</span><span id="__span-2-8">            <span class="n">val_data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="p">)</span>
+</span><span id="__span-2-9">            <span class="n">train_param_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;anno_json&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;anno_json&quot;</span><span class="p">],</span> <span class="s2">&quot;coco_classes&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;coco_classes&quot;</span><span class="p">],</span>
+</span><span id="__span-2-10">                                <span class="s2">&quot;coco_dir&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;coco_dir&quot;</span><span class="p">],</span> <span class="s2">&quot;save_dir&quot;</span><span class="p">:</span> <span class="n">train_data_path</span><span class="p">}</span>
+</span><span id="__span-2-11">            <span class="n">preprocess_coco_dataset</span><span class="p">(</span><span class="n">train_param_dict</span><span class="p">)</span>
+</span><span id="__span-2-12">            <span class="n">val_param_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;anno_json&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;val_anno_json&quot;</span><span class="p">],</span> <span class="s2">&quot;coco_classes&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;coco_classes&quot;</span><span class="p">],</span>
+</span><span id="__span-2-13">                              <span class="s2">&quot;coco_dir&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;val_coco_dir&quot;</span><span class="p">],</span> <span class="s2">&quot;save_dir&quot;</span><span class="p">:</span> <span class="n">val_data_path</span><span class="p">}</span>
+</span><span id="__span-2-14">            <span class="n">preprocess_coco_dataset</span><span class="p">(</span><span class="n">val_param_dict</span><span class="p">)</span>
+</span><span id="__span-2-15">        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-2-16">            <span class="n">param_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;anno_json&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;anno_json&quot;</span><span class="p">],</span> <span class="s2">&quot;coco_classes&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;coco_classes&quot;</span><span class="p">],</span>
+</span><span id="__span-2-17">                          <span class="s2">&quot;coco_dir&quot;</span><span class="p">:</span> <span class="n">cfg</span><span class="p">[</span><span class="s2">&quot;coco_dir&quot;</span><span class="p">],</span> <span class="s2">&quot;save_dir&quot;</span><span class="p">:</span> <span class="n">data_dir</span><span class="p">}</span>
+</span><span id="__span-2-18">            <span class="n">preprocess_coco_dataset</span><span class="p">(</span><span class="n">param_dict</span><span class="p">)</span>
+</span><span id="__span-2-19">    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-2-20">        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not support dataset mode </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]))</span>
+</span><span id="__span-2-21">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== end preprocess dataset ==========&quot;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>由于题目说数据集是 coco 格式，所以程序会执行 <code>preprocess_coco_dataset()</code> 会分别以 train_param_dict、val_param_dict、param_dict 作为参数调用。</p>
+<p>由此已经可以明确函数 <code>preprocess_coco_dataset()</code> 的参数是 dict() 类型，所以第一个缺失答案如下：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><span class="c1">#1、填写参数标签</span>
+</span><span id="__span-3-2"><span class="c1">#------------------**************</span>
+</span><span id="__span-3-3"><span class="n">anno_json</span> <span class="o">=</span> <span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;anno_json&quot;</span><span class="p">]</span>   <span class="c1"># JSON格式标注文件路径</span>
+</span><span id="__span-3-4"><span class="n">coco_cls</span> <span class="o">=</span> <span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;coco_classes&quot;</span><span class="p">]</span> <span class="c1"># 数据类别80+1类的名字</span>
+</span><span id="__span-3-5"><span class="n">coco_dir</span> <span class="o">=</span> <span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;coco_dir&quot;</span><span class="p">]</span>     <span class="c1"># 数据集路径</span>
+</span><span id="__span-3-6"><span class="n">save_dir</span> <span class="o">=</span> <span class="n">param_dict</span><span class="p">[</span><span class="s2">&quot;save_dir&quot;</span><span class="p">]</span>     <span class="c1"># 最终结果保存路径</span>
+</span><span id="__span-3-7"><span class="c1">#--------------------***********************</span>
+</span></code></pre></div></td></tr></table></div>
+<p>第二处空缺如下：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><span class="n">coco_cls_dict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># key为类名，value为索引值</span>
+</span><span id="__span-4-2"><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coco_cls</span><span class="p">):</span>
+</span><span id="__span-4-3">
+</span><span id="__span-4-4">    <span class="c1"># 2、补全该处代码</span>
+</span><span id="__span-4-5">    <span class="c1">#------------------**************    </span>
+</span><span id="__span-4-6">    <span class="n">coco_cls_dict</span><span class="p">[</span><span class="n">xxx</span><span class="p">]</span> <span class="o">=</span>   <span class="c1"># eg:{&#39;backgroud&#39;:0, &#39;person&#39;:1&#39;,...}</span>
+</span><span id="__span-4-7">    <span class="c1">#------------------**************</span>
+</span></code></pre></div></td></tr></table></div>
+<p>填空 1 处，说 coco_cls 是 <em>数据类别80+1类的名字</em>，遍历变量中，i 逐渐递增，cls (class 的缩写) 是类别名。</p>
+<p>需要补全处的注释又说明 key-value 中的 key 应该是名字，而等于的值又是数字，所以应该是 <code>coco_cls_dict[cls] = i</code>。所以第二处缺失答案如下：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><span class="c1"># 2、补全该处代码</span>
+</span><span id="__span-5-2"><span class="c1">#------------------**************</span>
+</span><span id="__span-5-3"><span class="n">coco_cls_dict</span><span class="p">[</span><span class="n">xxx</span><span class="p">]</span> <span class="o">=</span>   <span class="c1"># eg:{&#39;backgroud&#39;:0, &#39;person&#39;:1&#39;,...}</span>
+</span><span id="__span-5-4"><span class="c1">#------------------**************</span>
+</span></code></pre></div></td></tr></table></div>
+<p>第三处空缺如下：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><span class="c1">#3、补全该处代码</span>
+</span><span id="__span-6-2"><span class="c1">#------------------**************</span>
+</span><span id="__span-6-3"><span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="n">anno</span><span class="p">:</span>
+</span><span id="__span-6-4">    <span class="n">m</span> <span class="o">=</span> <span class="n">annToMask</span><span class="p">(</span>   <span class="p">)</span>  <span class="c1"># h*w的array</span>
+</span><span id="__span-6-5">    <span class="n">c</span> <span class="o">=</span> <span class="n">coco_cls_dict</span><span class="p">[</span> <span class="p">]</span>  <span class="c1"># 最里层为此分割物体属于哪类。class_dict把idx转成类名，cls_dict把类名转回idx</span>
+</span><span id="__span-6-6">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+</span><span id="__span-6-7">        <span class="n">mask</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="p">()</span> <span class="o">*</span> <span class="p">(</span> <span class="o">*</span> <span class="p">)</span>  <span class="c1"># 当前属于背景的mask=0，与得到的物体的矩阵m，对应位置上标记为类别c</span>
+</span><span id="__span-6-8">    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-6-9">        <span class="n">mask</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="p">()</span> <span class="o">*</span> <span class="p">(((</span>  <span class="o">*</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>  <span class="c1"># 将3d转成2d,做上面类似的操作</span>
+</span><span id="__span-6-10"><span class="c1">#------------------**************</span>
+</span></code></pre></div></td></tr></table></div>
+<p>第一个函数 annToMask() 意思即将标注转化为 mask，函数体如下：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><span class="k">def</span><span class="w"> </span><span class="nf">annToMask</span><span class="p">(</span><span class="n">ann</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+</span><span id="__span-7-2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert annotation to RLE and then to binary mask.&quot;&quot;&quot;</span>
+</span><span id="__span-7-3">    <span class="kn">from</span><span class="w"> </span><span class="nn">pycocotools</span><span class="w"> </span><span class="kn">import</span> <span class="n">mask</span> <span class="k">as</span> <span class="n">maskHelper</span>
+</span><span id="__span-7-4">    <span class="n">segm</span> <span class="o">=</span> <span class="n">ann</span><span class="p">[</span><span class="s1">&#39;segmentation&#39;</span><span class="p">]</span>  <span class="c1"># 前景边界点，对应coco rle格式</span>
+</span><span id="__span-7-5">    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">segm</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+</span><span id="__span-7-6">        <span class="n">rles</span> <span class="o">=</span> <span class="n">maskHelper</span><span class="o">.</span><span class="n">frPyObjects</span><span class="p">(</span><span class="n">segm</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+</span><span id="__span-7-7">        <span class="n">rle</span> <span class="o">=</span> <span class="n">maskHelper</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">rles</span><span class="p">)</span>
+</span><span id="__span-7-8">    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">segm</span><span class="p">[</span><span class="s1">&#39;counts&#39;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+</span><span id="__span-7-9">        <span class="n">rle</span> <span class="o">=</span> <span class="n">maskHelper</span><span class="o">.</span><span class="n">frPyObjects</span><span class="p">(</span><span class="n">segm</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+</span><span id="__span-7-10">    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-7-11">        <span class="n">rle</span> <span class="o">=</span> <span class="n">ann</span><span class="p">[</span><span class="s1">&#39;segmentation&#39;</span><span class="p">]</span>
+</span><span id="__span-7-12">    <span class="n">m</span> <span class="o">=</span> <span class="n">maskHelper</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">rle</span><span class="p">)</span>
+</span><span id="__span-7-13">    <span class="k">return</span> <span class="n">m</span>
+</span></code></pre></div></td></tr></table></div>
+<p>即函数 annToMask() 输入标注 ann，height 和 width，输出 mask。由于 for 循环里遍历变量为 instance，所以确定第一个参数应该是标注，即 instance。后面的高和宽，可以看到前面几行有变量 h 和 w 的赋值，这里除了填它俩也没什么别的可填的了，因此第 4 行答案是 <code>m = annToMask(instance, h, w)</code>。</p>
+<p>第 5 行给出的提示说：<em>class_dict把idx转成类名，cls_dict把类名转回idx</em>。同时，借助代码补全插件 FittenCode，给出的提示为 <code>classs_dict[instance["category_id"]]</code>。猜测我们需要知道 instance 对应 json 文件的键值，打开 <code>raw_data/annotations/instances_annotations.json</code>，如下：</p>
+<p><img alt="alt text" src="../image-8.png" /></p>
+<p>这说明 AI 给出的提示准确无误，即第 5 行答案为：<code>c = coco_cls_dict[instance["category_id"]]</code>。</p>
+<p>第三处空缺还剩</p>
+<h2 id="_2">实践案例</h2>
+<h3 id="_3">计算机视觉</h3>
+<h4 id="resnet-50">ResNet 50 图像分类</h4>
+<p>ReNet 主要解决的问题：减轻网络层数增加时，模型的退化问题。大致结构如下：</p>
+<p><img alt="alt text" src="../image.png" /></p>
+<p>ResNet 有两种网络结构，一种是 Building Block，一种是 Bottleneck Block。Building Block 大致结构如下：</p>
+<p><img alt="alt text" src="../image-1.png" /></p>
+<p>Bottleneck Block 大致结构如下：</p>
+<p><img alt="alt text" src="../image-2.png" /></p>
+<h4 id="vision-transformer">Vision Transformer</h4>
+<p>Transformer 是自然语言处理模型的发展结晶，ViT 则是自然语言处理和计算机视觉两个领域的结晶。在<strong>不依赖卷积操作的情况下</strong>，仍能达到较好的效果。</p>
+<p>ViT 的主体结构：</p>
+<p><img alt="alt text" src="../image-3.png" /></p>
+<p>先解释 Transformer 的基本原理。下图中的网络结构是由 Transformer 编码器和解码器组成的：</p>
+<p><img alt="alt text" src="../image-4.png" /></p>
+<p>其中的编码器和解码器详细结构如下：</p>
+<p><img alt="alt text" src="../image-5.png" /></p>
+<p>这其中最重要的就是 Multi-Head Attention，该结构基于自注意力机制，是多个 Self-Attention 的并行组成。<strong>理解 Self-Attention 就抓住了 Transformer 的核心</strong>。</p>
+<p>Self-Attention 的核心内容是为输入向量的每个单词学习一个权重。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
