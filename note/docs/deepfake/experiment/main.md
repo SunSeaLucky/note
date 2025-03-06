@@ -8,11 +8,16 @@
 - 提出 Loss 约束是有效的，即能够解决双重水印攻击；
 - 部分微调是可行的，或者说仅针对解码器微调、而不进行全量微调是可行的；
 
-### 实验记录
+### 实验结果
 
----
+- 无微调/微调对比
 
-#### 第一次实验
+|    |    g_loss |   error_rate_C |   error_rate_R |   error_rate_F |    psnr |     ssim |   g_loss_on_discriminator |   g_loss_on_encoder_MSE |   g_loss_on_encoder_LPIPS |   g_loss_on_decoder_C |   g_loss_on_decoder_R |   g_loss_on_decoder_F |   d_loss |   g_loss_on_double_watermark |   double_error_rate_C |   double_error_rate_R |   double_error_rate_F |
+|---:|----------:|---------------:|---------------:|---------------:|--------:|---------:|--------------------------:|------------------------:|--------------------------:|----------------------:|----------------------:|----------------------:|---------:|-----------------------------:|----------------------:|----------------------:|----------------------:|
+|  未微调（Epoch 100） | 1.1644    |     0.00691318 |    0.000124139 |       0.478008 | 38.7788 | 0.938527 |                   2.03329 |             0.000531517 |                0.00808962 |           0.000523669 |           0.000302436 |           1.08015e-06 |  2.00961 |                   0.114804   |            0.498312   |              0.500698 |              0.487456 |
+|  微调（Epoch 100） | 0.0316224 |     0.00481385 |    6.89663e-05 |       0.485183 | 38.3354 | 0.929688 |                   2.12371 |             0.000589209 |                0.00874837 |           0.000439849 |           0.000251798 |           5.70558e-07 |  1.95333 |                   0.00159519 |            0.00129381 |              0        |              0.493148 |
+
+### 实验过程
 
 在 `network/Dual_Mark.py` 的第 200 行左右，添加如下损失行：
 
@@ -27,15 +32,11 @@ g_loss_on_double_watermark = (
 	self.criterion_MSE(double_decoded_messages_F, decoded_messages_F)
 ```
 
-添加 Loss 后，从 Epoch 91 （包含 Epoch 91）训练至 Epoch 100。**在测试集上 error_rate_C 依然在 50% 附近**，这说明该 Loss 似乎没有作用。
+添加 Loss 后，从 Epoch 91 （包含 Epoch 91）训练至 Epoch 100。**在测试集上 error_rate_C 依然在 50% 附近**，这说明该 Loss 似乎没有作用（后发现实际上是因为测试代码有问题，且未找出测试代码出问题的原因。实际上，不管是不是由于测试代码有问题，这里的 Loss 这么写都是不合适的，应当先按照下面的方式重新写 Loss）。
 
 猜测失败原因：约束第一次解码信息和第二次解码信息相同，但第一次解码信息本身又不一定准确。
 
-解决方案：约束第一次 **编码** 信息和第二次解码信息相同，同时赋予权重。
-
-#### 第二次实验
-
-把添加的 Loss 修改为：
+解决方案：约束第一次 **编码** 信息和第二次解码信息相同，同时赋予权重。把添加的 Loss 修改为：
 
 ```Python
 double_message = torch.Tensor(np.random.choice([-1.0, 1.0], (images.shape[0], 128))).to('cuda')
@@ -48,150 +49,25 @@ g_loss_on_double_watermark = (
 )
 ```
 
-训练结束后，修改 `test_Dual_Mark.py` 代码，使其编码两次水印，运行得到的 error_rate_C 依然很高（50% 左右浮动）。但是如果借助模型的 `validation` 函数在测试集上运行，则结果正常：
+训练结束后，修改 `test_Dual_Mark.py` 代码，使其编码两次水印，运行得到的 error_rate_C 依然很高（50% 左右浮动）。但是如果借助模型的 `validation()` 函数在测试集上运行，则结果正常：
 
 ```Python
-import yaml
-from easydict import EasyDict
-import os
-import time
-from shutil import copyfile
-import random
-from torch.utils.data import DataLoader
-from torch.utils.tensorboard import SummaryWriter
-from network.Dual_Mark import *
-from utils import *
-from tqdm import tqdm
-
-
-def seed_torch(seed=42):
-    seed = int(seed)
-    random.seed(seed)
-    os.environ['PYTHONHASHSEED'] = str(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
-    torch.backends.cudnn.enabled = True
-
-
-def main():
-    # ========================== Init network ========================== #
-    network = Network(message_length, noise_layers_R, noise_layers_F, device, batch_size, lr, beta1, attention_encoder, attention_decoder, weight)
-    if args.resume_config.resume:
-        network.load_model(
-            args.resume_config.encoder_decoder_model_path, 
-            args.resume_config.discriminator_model_path, 
-        )
-        
-    # ========================== Init dataset ========================== #
-    train_dataset = attrsImgDataset(train_dataset_path, image_size, "celebahq")
-    #train_dataset = maskImgDataset(os.path.join(dataset_path, "train_" + str(image_size)), image_size)
-    assert len(train_dataset) > 0, "train dataset is empty"
-    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=0, pin_memory=True)
-    
-    val_dataset = attrsImgDataset(val_dataset_path, image_size, "celebahq")
-    assert len(val_dataset) > 0, "val dataset is empty"
-    #val_dataset = maskImgDataset(os.path.join(dataset_path, "val_" + str(image_size)), image_size)
-    val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=0, pin_memory=True)
-
-    # =========================== Train & Val ========================== #
-    print("\nStart training : \n\n")
-
-
-    # =========================== Validation =========================== #
-    val_result = {
-        "g_loss": 0.0,
-        "error_rate_C": 0.0,
-        "error_rate_R": 0.0,
-        "error_rate_F": 0.0,
-        "psnr": 0.0,
-        "ssim": 0.0,
-        "g_loss_on_discriminator": 0.0,
-        "g_loss_on_encoder_MSE": 0.0,
-        "g_loss_on_encoder_LPIPS": 0.0,
-        "g_loss_on_decoder_C": 0.0,
-        "g_loss_on_decoder_R": 0.0,
-        "g_loss_on_decoder_F": 0.0,
-        "d_loss": 0.0,
-        # ==================== Added double watermarking =================== #
-        "g_loss_on_double_watermark": 0.0, 
-        "double_error_rate_C": 0.0,
-        "double_error_rate_R": 0.0,
-        "double_error_rate_F": 0.0
-    }
-    start_time = time.time()
-
-    saved_iterations = np.random.choice(np.arange(1, len(val_dataloader)+1), size=save_images_number, replace=False)
-    saved_all = None
-
+with tqdm(total=len(val_dataloader)) as pbar:
     for step, (image, mask) in enumerate(val_dataloader, 1):
         image = image.to(device)
         message = torch.Tensor(np.random.choice([-message_range, message_range], (image.shape[0], message_length))).to(device)
 
-        result, (images, encoded_images, noised_images) = network.validation(image, message, mask)
-        print(f"error rate C: {result['error_rate_C']:.4f}, error rate R: {result['error_rate_R']:.4f}, error rate F: {result['error_rate_F']:.4f}, psnr: {result['psnr']:.4f}, ssim: {result['ssim']:.4f}")
-        print(f"double error rate C: {result['double_error_rate_C']:.4f}, double error rate R: {result['double_error_rate_R']:.4f}, double error rate F: {result['double_error_rate_F']:.4f}")
+        result_origin, (images, encoded_images, noised_images) = network_origin.validation(image, message, mask)
+        result_double_watermark, (images, encoded_images, noised_images) = network_double_watermark.validation(image, message, mask)
 
-        for key in result:
-            val_result[key] += float(result[key])
-
-if __name__ == '__main__':
-    seed_torch(42) # it does not work if the mode of F.interpolate is "bilinear"
-    # ======================= Init configuration ======================= #
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    print(f"\nUsing device: {device}")
-    with open('cfg/train_DualMark.yaml', 'r') as f:
-        args = EasyDict(yaml.load(f, Loader=yaml.SafeLoader))
-    project_name = args.project_name
-    epoch_number = args.epoch_number
-    batch_size = args.batch_size
-    lr = args.lr
-    beta1 = args.beta1
-    image_size = args.image_size
-    message_length = args.message_length
-    message_range = args.message_range
-    attention_encoder = args.attention_encoder
-    attention_decoder = args.attention_decoder
-    weight = args.weight
-    dataset_path = args.dataset_path
-    save_images_number = args.save_images_number
-    noise_layers_R = args.noise_layers.pool_R
-    noise_layers_F = args.noise_layers.pool_F    
-    train_dataset_path = os.path.join(dataset_path, "train_" + str(image_size))
-    # 这里的val_dataset_path是测试集的路径，不是验证集的路径
-    val_dataset_path = os.path.join(dataset_path, "test_" + str(image_size))
+        for key in result_origin:
+            test_result_origin[key] += float(result_origin[key])
+            test_result_double_watermark[key] += float(result_double_watermark[key])
         
-    if noise_layers_R is None:
-        noise_layers_R = []
-    if noise_layers_F is None:
-        noise_layers_F = []
-    assert os.path.exists(train_dataset_path), "train dataset is not exist"
-    assert os.path.exists(val_dataset_path), "val dataset is not exist"
-
-    project_name += "_" + str(image_size) + "_" + str(message_length) + "_" + str(message_range) + "_" + str(lr) + "_" + str(beta1) + "_" + attention_encoder + "_" + attention_decoder
-    for i in weight:
-        project_name += "_" +  str(i)
-    result_folder = "results/" + time.strftime(project_name + "_%Y_%m_%d_%H_%M_%S", time.localtime()) + "/"
-    if not os.path.exists(result_folder): os.mkdir(result_folder)
-    if not os.path.exists(result_folder + "images/"): os.mkdir(result_folder + "images/")
-    if not os.path.exists(result_folder + "models/"): os.mkdir(result_folder + "models/")
-    copyfile("cfg/train_DualMark.yaml", result_folder + "train_DualMark.yaml")
-    writer = SummaryWriter('runs/'+ project_name + time.strftime("%_Y_%m_%d__%H_%M_%S", time.localtime()))
-    main()
-    writer.close()
+for key in result_origin:
+    test_result_origin[key] /= len(val_dataloader)
+    test_result_double_watermark[key] /= len(val_dataloader)
+pd.DataFrame([test_result_origin, test_result_double_watermark], index=[0]).to_markdown("test_result.md")
 ```
 
-猜测是 `test_Dual_Mark.py` 代码的问题。暂未找到原因。
-
-### 实验结果
-
-运行 `./board.sh`，其中 
-
-```
-Dual_watermark_256_128_0.1_5e-05_0.5_se_se_1_10_10_10_0.1_2025_03_03_03_22_22
-```
-
-为修改代码后（第二次实验）的运行第 91-100 轮的过程。
+猜测是 `test_Dual_Mark.py` 代码的问题，暂未找到原因。不过好在终于可以在测试集上检验微调效果，暂时
