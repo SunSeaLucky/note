@@ -149,9 +149,23 @@ def annToMask(ann, height, width):
 
 ![alt text](image-8.png)
 
-这说明 AI 给出的提示准确无误，即第 5 行答案为：`c = coco_cls_dict[instance["category_id"]]`。
+这说明 AI 给出的提示准确无误，即第 5 行答案为：`c = coco_cls_dict[instance["category_id"]]`。剩下的空缺较难，假设比赛时没有 coco 数据集处理相关的知识，感觉根本无法做出来。至于 `src/config.py` 下的参数，答案基本是按照 `train.py` 中的默认值来填的，这就很奇怪...如果你是默认值的话，那为什么还要在配置文件里声明一下？
 
-第三处空缺还剩
+- 考点 3：完成 `unet` 网络模型挖空部分，训练并保存权重，以生成权重文件为准
+
+第一处空缺，由于只需要区分是蓝色区域，因此分类类别为 2，这与前面的配置文件中的填写一致。
+
+```Python
+def __init__(self, in_channel, n_class=2, feature_scale=2, use_deconv=True, use_bn=True):
+```
+
+第二处空缺，可以参照上方函数 `NestedUNet` 如何对通道数进行缩放。这段代码是为了方便修改输入、输出通道数而设置的，feature.scale 类似于[这里](https://www.mindspore.cn/tutorials/zh-CN/r2.5.0/cv/transfer_learning.html) `ResidualBlockBase` 的 `expansion` ，因此该空缺填写如下：
+
+```Python
+filters = [int(x / self.feature_scale) for x in filters]
+```
+
+
 
 ## 实践案例
 
