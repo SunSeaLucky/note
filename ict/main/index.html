@@ -891,8 +891,16 @@
 <p>即函数 annToMask() 输入标注 ann，height 和 width，输出 mask。由于 for 循环里遍历变量为 instance，所以确定第一个参数应该是标注，即 instance。后面的高和宽，可以看到前面几行有变量 h 和 w 的赋值，这里除了填它俩也没什么别的可填的了，因此第 4 行答案是 <code>m = annToMask(instance, h, w)</code>。</p>
 <p>第 5 行给出的提示说：<em>class_dict把idx转成类名，cls_dict把类名转回idx</em>。同时，借助代码补全插件 FittenCode，给出的提示为 <code>classs_dict[instance["category_id"]]</code>。猜测我们需要知道 instance 对应 json 文件的键值，打开 <code>raw_data/annotations/instances_annotations.json</code>，如下：</p>
 <p><img alt="alt text" src="../image-8.png" /></p>
-<p>这说明 AI 给出的提示准确无误，即第 5 行答案为：<code>c = coco_cls_dict[instance["category_id"]]</code>。</p>
-<p>第三处空缺还剩</p>
+<p>这说明 AI 给出的提示准确无误，即第 5 行答案为：<code>c = coco_cls_dict[instance["category_id"]]</code>。剩下的空缺较难，假设比赛时没有 coco 数据集处理相关的知识，感觉根本无法做出来。至于 <code>src/config.py</code> 下的参数，答案基本是按照 <code>train.py</code> 中的默认值来填的，这就很奇怪...如果你是默认值的话，那为什么还要在配置文件里声明一下？</p>
+<ul>
+<li>考点 3：完成 <code>unet</code> 网络模型挖空部分，训练并保存权重，以生成权重文件为准</li>
+</ul>
+<p>第一处空缺，由于只需要区分是蓝色区域，因此分类类别为 2，这与前面的配置文件中的填写一致。</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channel</span><span class="p">,</span> <span class="n">n_class</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">feature_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">use_deconv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_bn</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span></code></pre></div></td></tr></table></div>
+<p>第二处空缺，可以参照上方函数 <code>NestedUNet</code> 如何对通道数进行缩放。这段代码是为了方便修改输入、输出通道数而设置的，feature.scale 类似于<a href="https://www.mindspore.cn/tutorials/zh-CN/r2.5.0/cv/transfer_learning.html">这里</a> <code>ResidualBlockBase</code> 的 <code>expansion</code> ，因此该空缺填写如下：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><span class="n">filters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_scale</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">filters</span><span class="p">]</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_2">实践案例</h2>
 <h3 id="_3">计算机视觉</h3>
 <h4 id="resnet-50">ResNet 50 图像分类</h4>
