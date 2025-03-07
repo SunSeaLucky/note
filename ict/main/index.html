@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -306,7 +306,6 @@
   
   <span class="md-ellipsis">
     首页
-    
   </span>
   
 
@@ -340,7 +339,6 @@
   
   <span class="md-ellipsis">
     深度伪造
-    
   </span>
   
 
@@ -366,7 +364,6 @@
   
   <span class="md-ellipsis">
     笔记
-    
   </span>
   
 
@@ -388,7 +385,6 @@
   
   <span class="md-ellipsis">
     实验
-    
   </span>
   
 
@@ -435,7 +431,6 @@
   
   <span class="md-ellipsis">
     ICT
-    
   </span>
   
 
@@ -470,7 +465,6 @@
   
   <span class="md-ellipsis">
     笔记
-    
   </span>
   
 
@@ -482,7 +476,6 @@
   
   <span class="md-ellipsis">
     笔记
-    
   </span>
   
 
@@ -704,7 +697,6 @@
                   
 
 
-
 <h1 id="ict">ICT 实验笔记</h1>
 <h2 id="2024-mindspore">2024 年国赛试题 MindSpore 部分内容研究</h2>
 <h3 id="_1">任务一</h3>
@@ -777,7 +769,7 @@
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><span class="k">def</span><span class="w"> </span><span class="nf">preprocess_dataset</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">):</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><span class="k">def</span> <span class="nf">preprocess_dataset</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">):</span>
 </span><span id="__span-2-2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Select preprocess function.&quot;&quot;&quot;</span>
 </span><span id="__span-2-3">    <span class="k">if</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;cell_nuclei&quot;</span><span class="p">:</span>
 </span><span id="__span-2-4">        <span class="n">preprocess_cell_nuclei_dataset</span><span class="p">({</span><span class="s2">&quot;data_dir&quot;</span><span class="p">:</span> <span class="n">data_dir</span><span class="p">})</span>
@@ -874,9 +866,9 @@
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><span class="k">def</span><span class="w"> </span><span class="nf">annToMask</span><span class="p">(</span><span class="n">ann</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><span class="k">def</span> <span class="nf">annToMask</span><span class="p">(</span><span class="n">ann</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
 </span><span id="__span-7-2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert annotation to RLE and then to binary mask.&quot;&quot;&quot;</span>
-</span><span id="__span-7-3">    <span class="kn">from</span><span class="w"> </span><span class="nn">pycocotools</span><span class="w"> </span><span class="kn">import</span> <span class="n">mask</span> <span class="k">as</span> <span class="n">maskHelper</span>
+</span><span id="__span-7-3">    <span class="kn">from</span> <span class="nn">pycocotools</span> <span class="kn">import</span> <span class="n">mask</span> <span class="k">as</span> <span class="n">maskHelper</span>
 </span><span id="__span-7-4">    <span class="n">segm</span> <span class="o">=</span> <span class="n">ann</span><span class="p">[</span><span class="s1">&#39;segmentation&#39;</span><span class="p">]</span>  <span class="c1"># 前景边界点，对应coco rle格式</span>
 </span><span id="__span-7-5">    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">segm</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
 </span><span id="__span-7-6">        <span class="n">rles</span> <span class="o">=</span> <span class="n">maskHelper</span><span class="o">.</span><span class="n">frPyObjects</span><span class="p">(</span><span class="n">segm</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
@@ -896,10 +888,188 @@
 <li>考点 3：完成 <code>unet</code> 网络模型挖空部分，训练并保存权重，以生成权重文件为准</li>
 </ul>
 <p>第一处空缺，由于只需要区分是蓝色区域，因此分类类别为 2，这与前面的配置文件中的填写一致。</p>
-<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channel</span><span class="p">,</span> <span class="n">n_class</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">feature_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">use_deconv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_bn</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channel</span><span class="p">,</span> <span class="n">n_class</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">feature_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">use_deconv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_bn</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 </span></code></pre></div></td></tr></table></div>
 <p>第二处空缺，可以参照上方函数 <code>NestedUNet</code> 如何对通道数进行缩放。这段代码是为了方便修改输入、输出通道数而设置的，feature.scale 类似于<a href="https://www.mindspore.cn/tutorials/zh-CN/r2.5.0/cv/transfer_learning.html">这里</a> <code>ResidualBlockBase</code> 的 <code>expansion</code> ，因此该空缺填写如下：</p>
 <div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><span class="n">filters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_scale</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">filters</span><span class="p">]</span>
+</span></code></pre></div></td></tr></table></div>
+<p>第三处空缺，可以参照上方函数 <code>NestedUNet</code> 如何定义池化层，再结合给出的模型图片确定卷积窗口尺寸和步长。因此，该处空缺填写如下：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pad_mode</span><span class="o">=</span><span class="s2">&quot;same&quot;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>第四处空缺，可以参照上方函数 <code>NestedUNet</code> 如何定义下采样层：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><span class="bp">self</span><span class="o">.</span><span class="n">conv00</span> <span class="o">=</span> <span class="n">UnetConv2d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">in_channel</span><span class="p">,</span> <span class="n">filters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bn</span><span class="p">)</span>
+</span><span id="__span-11-2"><span class="bp">self</span><span class="o">.</span><span class="n">conv10</span> <span class="o">=</span> <span class="n">UnetConv2d</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bn</span><span class="p">)</span>
+</span><span id="__span-11-3"><span class="bp">self</span><span class="o">.</span><span class="n">conv20</span> <span class="o">=</span> <span class="n">UnetConv2d</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bn</span><span class="p">)</span>
+</span><span id="__span-11-4"><span class="bp">self</span><span class="o">.</span><span class="n">conv30</span> <span class="o">=</span> <span class="n">UnetConv2d</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bn</span><span class="p">)</span>
+</span><span id="__span-11-5"><span class="bp">self</span><span class="o">.</span><span class="n">conv40</span> <span class="o">=</span> <span class="n">UnetConv2d</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bn</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>因此，仿照上述代码，第四处空缺填写如下：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">UnetConv2d</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bn</span><span class="p">)</span>
+</span><span id="__span-12-2"><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">UnetConv2d</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bn</span><span class="p">)</span>
+</span><span id="__span-12-3"><span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">UnetConv2d</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bn</span><span class="p">)</span>
+</span><span id="__span-12-4"><span class="bp">self</span><span class="o">.</span><span class="n">conv4</span> <span class="o">=</span> <span class="n">UnetConv2d</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bn</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>第五处空缺，可以参照上方函数 <code>NestedUNet</code> 如何定义上采样层：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat01</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-13-2"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat11</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-13-3"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat21</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-13-4"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat31</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-13-5">
+</span><span id="__span-13-6"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat02</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-13-7"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat12</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-13-8"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat22</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-13-9">
+</span><span id="__span-13-10"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat03</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-13-11"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat13</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-13-12">
+</span><span id="__span-13-13"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat04</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>因此，仿照上述代码，第五处空缺填写如下：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat2</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-14-2"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat3</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-14-3"><span class="bp">self</span><span class="o">.</span><span class="n">up_concat4</span> <span class="o">=</span> <span class="n">UnetUp</span><span class="p">(</span><span class="n">filters</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">filters</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_deconv</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>这里为什么只到 4？因为在下方的 <code>contruct()</code> 函数中，是先从 up4 开始的。</p>
+<p>第六处空缺，可以参照上方函数 <code>NestedUNet</code> 如何定义 <code>contrusct()</code> 函数：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><span class="n">x00</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv00</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>                   <span class="c1"># channel = filters[0]</span>
+</span><span id="__span-15-2"><span class="n">x10</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">x00</span><span class="p">))</span>        <span class="c1"># channel = filters[1]</span>
+</span><span id="__span-15-3"><span class="n">x20</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv20</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">x10</span><span class="p">))</span>        <span class="c1"># channel = filters[2]</span>
+</span><span id="__span-15-4"><span class="n">x30</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv30</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">x20</span><span class="p">))</span>        <span class="c1"># channel = filters[3]</span>
+</span><span id="__span-15-5"><span class="n">x40</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv40</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">x30</span><span class="p">))</span>        <span class="c1"># channel = filters[4]</span>
+</span><span id="__span-15-6">
+</span><span id="__span-15-7"><span class="n">x01</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_concat01</span><span class="p">(</span><span class="n">x10</span><span class="p">,</span> <span class="n">x00</span><span class="p">)</span>            <span class="c1"># channel = filters[0]</span>
+</span><span id="__span-15-8"><span class="n">x11</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_concat11</span><span class="p">(</span><span class="n">x20</span><span class="p">,</span> <span class="n">x10</span><span class="p">)</span>            <span class="c1"># channel = filters[1]</span>
+</span><span id="__span-15-9"><span class="n">x21</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_concat21</span><span class="p">(</span><span class="n">x30</span><span class="p">,</span> <span class="n">x20</span><span class="p">)</span>            <span class="c1"># channel = filters[2]</span>
+</span><span id="__span-15-10"><span class="n">x31</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_concat31</span><span class="p">(</span><span class="n">x40</span><span class="p">,</span> <span class="n">x30</span><span class="p">)</span>            <span class="c1"># channel = filters[3]</span>
+</span><span id="__span-15-11">
+</span><span id="__span-15-12"><span class="n">x02</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_concat02</span><span class="p">(</span><span class="n">x11</span><span class="p">,</span> <span class="n">x00</span><span class="p">,</span> <span class="n">x01</span><span class="p">)</span>       <span class="c1"># channel = filters[0]</span>
+</span><span id="__span-15-13"><span class="n">x12</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_concat12</span><span class="p">(</span><span class="n">x21</span><span class="p">,</span> <span class="n">x10</span><span class="p">,</span> <span class="n">x11</span><span class="p">)</span>       <span class="c1"># channel = filters[1]</span>
+</span><span id="__span-15-14"><span class="n">x22</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_concat22</span><span class="p">(</span><span class="n">x31</span><span class="p">,</span> <span class="n">x20</span><span class="p">,</span> <span class="n">x21</span><span class="p">)</span>       <span class="c1"># channel = filters[2]</span>
+</span><span id="__span-15-15">
+</span><span id="__span-15-16"><span class="n">x03</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_concat03</span><span class="p">(</span><span class="n">x12</span><span class="p">,</span> <span class="n">x00</span><span class="p">,</span> <span class="n">x01</span><span class="p">,</span> <span class="n">x02</span><span class="p">)</span>  <span class="c1"># channel = filters[0]</span>
+</span><span id="__span-15-17"><span class="n">x13</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_concat13</span><span class="p">(</span><span class="n">x22</span><span class="p">,</span> <span class="n">x10</span><span class="p">,</span> <span class="n">x11</span><span class="p">,</span> <span class="n">x12</span><span class="p">)</span>  <span class="c1"># channel = filters[1]</span>
+</span><span id="__span-15-18">
+</span><span id="__span-15-19"><span class="n">x04</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_concat04</span><span class="p">(</span><span class="n">x13</span><span class="p">,</span> <span class="n">x00</span><span class="p">,</span> <span class="n">x01</span><span class="p">,</span> <span class="n">x02</span><span class="p">,</span> <span class="n">x03</span><span class="p">)</span> <span class="c1"># channel = filters[0]</span>
+</span><span id="__span-15-20">
+</span><span id="__span-15-21"><span class="n">final1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final1</span><span class="p">(</span><span class="n">x01</span><span class="p">)</span>
+</span><span id="__span-15-22"><span class="n">final2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final2</span><span class="p">(</span><span class="n">x02</span><span class="p">)</span>
+</span><span id="__span-15-23"><span class="n">final3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final3</span><span class="p">(</span><span class="n">x03</span><span class="p">)</span>
+</span><span id="__span-15-24"><span class="n">final4</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">final4</span><span class="p">(</span><span class="n">x04</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>因此，仿照上述代码，第六处空缺填写如下：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><span class="c1">#/5、请补充填写下面代码中缺失的部分，将上述算子组合成自定义的unet网络（down sample部分）</span>
+</span><span id="__span-16-2"><span class="c1">##-------------********------------</span>
+</span><span id="__span-16-3"><span class="n">x0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv0</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="c1"># 第一个卷积模块，输入为原始图像inputs，输出为特征图x0</span>
+</span><span id="__span-16-4"><span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">x0</span><span class="p">))</span> <span class="c1"># 第二个卷积模块，特征图x0需经过最大池化和卷积运算得到x1</span>
+</span><span id="__span-16-5"><span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span> <span class="c1"># 第三个卷积模块，特征图x1需经过最大池化和卷积运算得到x2</span>
+</span><span id="__span-16-6"><span class="n">x3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span> <span class="c1"># 第四个卷积模块，特征图x2需经过最大池化和卷积运算得到x3</span>
+</span><span id="__span-16-7"><span class="n">x4</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv4</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">x3</span><span class="p">))</span> <span class="c1"># 第五个卷积模块，特征图x3需经过最大池化和卷积运算得到x4</span>
+</span><span id="__span-16-8"><span class="c1">##-------------********------------</span>
+</span></code></pre></div></td></tr></table></div>
+<p>接下来补充 <code>train.py</code> 的代码，这部分属于基本功了，第一处空缺很简单：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><span class="n">context</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">PYNATIVE_MODE</span><span class="p">,</span> <span class="n">device_target</span><span class="o">=</span><span class="s2">&quot;Ascend&quot;</span><span class="p">,</span> <span class="n">device_id</span><span class="o">=</span><span class="n">device_id</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>这里至少是可以写出 context.PYNATIVE_MODE 的，然后补全工具会因为上面设置了 device，自动补全出 device_id。至于 device 则不甚影响此次实验运行，属于无所谓的参数。</p>
+<p>接下来定义优化器，上方已经指明要使用 Adam 优化器，也属于基础操作，多敲过几个网络肯定是会的：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><span class="n">optimizer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">net</span><span class="o">.</span><span class="n">trainable_params</span><span class="p">(),</span> <span class="n">learning_rate</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;weight_decay&#39;</span><span class="p">],</span> <span class="n">loss_scale</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;loss_scale&#39;</span><span class="p">])</span>
+</span></code></pre></div></td></tr></table></div>
+<p>接下来补全遍历的 for 函数。由于是从 0 开始取值的，打印的时候应该设置 t+1；train_loop 有三个参数，分别是 model、dataset、loss_f、optimizer，由于其均已经在代码中定义，直接使用补全插件就可以得到答案；test_loop 也类似，只不过没有 optimizer 参数。</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">epochs</span> <span class="o">/</span> <span class="n">repeat</span><span class="p">)):</span>
+</span><span id="__span-19-2">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="se">\n</span><span class="s2">-------------------------------&quot;</span><span class="p">)</span>
+</span><span id="__span-19-3">    <span class="n">train_loop</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">net</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">loss_fn</span><span class="o">=</span><span class="n">criterion</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">)</span>
+</span><span id="__span-19-4">    <span class="n">test_loop</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">net</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">valid_dataset</span><span class="p">,</span> <span class="n">loss_fn</span><span class="o">=</span><span class="n">criterion</span><span class="p">)</span>
+</span><span id="__span-19-5"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>接下来的空更简单，无需赘述：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><span class="n">mindspore</span><span class="o">.</span><span class="n">save_checkpoint</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="s1">&#39;best.ckpt&#39;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>下面的空和定义 optimizer 类似，也是属于每次必定义的，多敲几个网络就可以记住：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><span class="n">grad_fn</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">value_and_grad</span><span class="p">(</span><span class="n">forward_fn</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">has_aux</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>同上，必定义的：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><span class="k">def</span> <span class="nf">train_step</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+</span><span id="__span-22-2">    <span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="n">grads</span> <span class="o">=</span> <span class="n">grad_fn</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</span><span id="__span-22-3">    <span class="n">loss</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</span><span id="__span-22-4">    <span class="k">return</span> <span class="n">loss</span>
+</span></code></pre></div></td></tr></table></div>
+<p>最后一处补全，这是一个 test 函数。这个函数是否补全并不影响训练，如果实在无法补全也可以直接在顶部 return。这里也是需要多敲几遍网络才能知道，再加上补全提示，就比较容易写出来：</p>
+<div class="language-Python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><span class="n">num_batches</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_dataset_size</span><span class="p">()</span>
+</span><span id="__span-23-2"><span class="n">model</span><span class="o">.</span><span class="n">set_train</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-23-3"><span class="n">test_loss</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-23-4"><span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">create_tuple_iterator</span><span class="p">():</span>
+</span><span id="__span-23-5">    <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>        
+</span><span id="__span-23-6">    <span class="n">test_loss</span> <span class="o">+=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">()</span>
+</span><span id="__span-23-7">
+</span><span id="__span-23-8"><span class="n">test_loss</span> <span class="o">/=</span> <span class="n">num_batches</span>
+</span><span id="__span-23-9">
+</span><span id="__span-23-10"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test: </span><span class="se">\n</span><span class="s2"> Avg loss: </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="s2">&gt;8f</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
 <h2 id="_2">实践案例</h2>
 <h3 id="_3">计算机视觉</h3>
@@ -972,10 +1142,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
         <script src="../../javascripts/katex.js"></script>
       
