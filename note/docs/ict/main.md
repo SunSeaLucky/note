@@ -165,7 +165,160 @@ def __init__(self, in_channel, n_class=2, feature_scale=2, use_deconv=True, use_
 filters = [int(x / self.feature_scale) for x in filters]
 ```
 
+第三处空缺，可以参照上方函数 `NestedUNet` 如何定义池化层，再结合给出的模型图片确定卷积窗口尺寸和步长。因此，该处空缺填写如下：
 
+```Python
+self.maxpool = nn.MaxPool2d(kernel_size=2, stride=2, pad_mode="same")
+```
+
+第四处空缺，可以参照上方函数 `NestedUNet` 如何定义下采样层：
+
+```Python
+self.conv00 = UnetConv2d(self.in_channel, filters[0], self.use_bn)
+self.conv10 = UnetConv2d(filters[0], filters[1], self.use_bn)
+self.conv20 = UnetConv2d(filters[1], filters[2], self.use_bn)
+self.conv30 = UnetConv2d(filters[2], filters[3], self.use_bn)
+self.conv40 = UnetConv2d(filters[3], filters[4], self.use_bn)
+```
+
+因此，仿照上述代码，第四处空缺填写如下：
+
+```Python
+self.conv1 = UnetConv2d(filters[0], filters[1], self.use_bn)
+self.conv2 = UnetConv2d(filters[1], filters[2], self.use_bn)
+self.conv3 = UnetConv2d(filters[2], filters[3], self.use_bn)
+self.conv4 = UnetConv2d(filters[3], filters[4], self.use_bn)
+```
+
+第五处空缺，可以参照上方函数 `NestedUNet` 如何定义上采样层：
+
+```Python
+self.up_concat01 = UnetUp(filters[1], filters[0], self.use_deconv, 2)
+self.up_concat11 = UnetUp(filters[2], filters[1], self.use_deconv, 2)
+self.up_concat21 = UnetUp(filters[3], filters[2], self.use_deconv, 2)
+self.up_concat31 = UnetUp(filters[4], filters[3], self.use_deconv, 2)
+
+self.up_concat02 = UnetUp(filters[1], filters[0], self.use_deconv, 3)
+self.up_concat12 = UnetUp(filters[2], filters[1], self.use_deconv, 3)
+self.up_concat22 = UnetUp(filters[3], filters[2], self.use_deconv, 3)
+
+self.up_concat03 = UnetUp(filters[1], filters[0], self.use_deconv, 4)
+self.up_concat13 = UnetUp(filters[2], filters[1], self.use_deconv, 4)
+
+self.up_concat04 = UnetUp(filters[1], filters[0], self.use_deconv, 5)
+```
+
+因此，仿照上述代码，第五处空缺填写如下：
+
+```Python
+self.up_concat2 = UnetUp(filters[2], filters[1], self.use_deconv, 2)
+self.up_concat3 = UnetUp(filters[3], filters[2], self.use_deconv, 2)
+self.up_concat4 = UnetUp(filters[4], filters[3], self.use_deconv, 2)
+```
+
+这里为什么只到 4？因为在下方的 `contruct()` 函数中，是先从 up4 开始的。
+
+第六处空缺，可以参照上方函数 `NestedUNet` 如何定义 `contrusct()` 函数：
+
+```Python
+x00 = self.conv00(inputs)                   # channel = filters[0]
+x10 = self.conv10(self.maxpool(x00))        # channel = filters[1]
+x20 = self.conv20(self.maxpool(x10))        # channel = filters[2]
+x30 = self.conv30(self.maxpool(x20))        # channel = filters[3]
+x40 = self.conv40(self.maxpool(x30))        # channel = filters[4]
+
+x01 = self.up_concat01(x10, x00)            # channel = filters[0]
+x11 = self.up_concat11(x20, x10)            # channel = filters[1]
+x21 = self.up_concat21(x30, x20)            # channel = filters[2]
+x31 = self.up_concat31(x40, x30)            # channel = filters[3]
+
+x02 = self.up_concat02(x11, x00, x01)       # channel = filters[0]
+x12 = self.up_concat12(x21, x10, x11)       # channel = filters[1]
+x22 = self.up_concat22(x31, x20, x21)       # channel = filters[2]
+
+x03 = self.up_concat03(x12, x00, x01, x02)  # channel = filters[0]
+x13 = self.up_concat13(x22, x10, x11, x12)  # channel = filters[1]
+
+x04 = self.up_concat04(x13, x00, x01, x02, x03) # channel = filters[0]
+
+final1 = self.final1(x01)
+final2 = self.final2(x02)
+final3 = self.final3(x03)
+final4 = self.final4(x04)
+```
+
+因此，仿照上述代码，第六处空缺填写如下：
+
+```Python
+#/5、请补充填写下面代码中缺失的部分，将上述算子组合成自定义的unet网络（down sample部分）
+##-------------********------------
+x0 = self.conv0(inputs) # 第一个卷积模块，输入为原始图像inputs，输出为特征图x0
+x1 = self.conv1(self.maxpool(x0)) # 第二个卷积模块，特征图x0需经过最大池化和卷积运算得到x1
+x2 = self.conv2(self.maxpool(x1)) # 第三个卷积模块，特征图x1需经过最大池化和卷积运算得到x2
+x3 = self.conv3(self.maxpool(x2)) # 第四个卷积模块，特征图x2需经过最大池化和卷积运算得到x3
+x4 = self.conv4(self.maxpool(x3)) # 第五个卷积模块，特征图x3需经过最大池化和卷积运算得到x4
+##-------------********------------
+```
+
+接下来补充 `train.py` 的代码，这部分属于基本功了，第一处空缺很简单：
+
+```Python
+context.set_context(mode=context.PYNATIVE_MODE, device_target="Ascend", device_id=device_id)
+```
+
+这里至少是可以写出 context.PYNATIVE_MODE 的，然后补全工具会因为上面设置了 device，自动补全出 device_id。至于 device 则不甚影响此次实验运行，属于无所谓的参数。
+
+接下来定义优化器，上方已经指明要使用 Adam 优化器，也属于基础操作，多敲过几个网络肯定是会的：
+
+```Python
+optimizer = nn.Adam(params=net.trainable_params(), learning_rate=lr, weight_decay=cfg['weight_decay'], loss_scale=cfg['loss_scale'])
+```
+
+接下来补全遍历的 for 函数。由于是从 0 开始取值的，打印的时候应该设置 t+1；train_loop 有三个参数，分别是 model、dataset、loss_f、optimizer，由于其均已经在代码中定义，直接使用补全插件就可以得到答案；test_loop 也类似，只不过没有 optimizer 参数。
+
+```Python
+for t in range(int(epochs / repeat)):
+    print(f"Epoch {t+1}\n-------------------------------")
+    train_loop(model=net, dataset=train_dataset, loss_fn=criterion, optimizer=optimizer)
+    test_loop(model=net, dataset=valid_dataset, loss_fn=criterion)
+print("Done!")
+```
+
+接下来的空更简单，无需赘述：
+
+```Python
+mindspore.save_checkpoint(net, 'best.ckpt')
+```
+
+下面的空和定义 optimizer 类似，也是属于每次必定义的，多敲几个网络就可以记住：
+
+```Python
+grad_fn = ops.value_and_grad(forward_fn, None, has_aux=True)
+```
+
+同上，必定义的：
+
+```Python
+def train_step(data, label):
+    (loss, _), grads = grad_fn(data, label)
+    loss = optimizer(data, optimizer(data))
+    return loss
+```
+
+最后一处补全，这是一个 test 函数。这个函数是否补全并不影响训练，如果实在无法补全也可以直接在顶部 return。这里也是需要多敲几遍网络才能知道，再加上补全提示，就比较容易写出来：
+
+```Python
+num_batches = dataset.get_dataset_size()
+model.set_train(False)
+test_loss = 0
+for data, label in dataset.create_tuple_iterator():
+    pred = model(data)        
+    test_loss += loss_fn(pred, label).asnumpy()
+    
+test_loss /= num_batches
+
+print(f"Test: \n Avg loss: {test_loss:>8f} \n")
+```
 
 ## 实践案例
 
