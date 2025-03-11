@@ -1,3 +1,23 @@
+# 双重水印攻击实验
+
+## 需要得到的实验结果
+
+1. 需要使用统一的数据集
+1. 分别对于水印模型微调前、后执行：
+    1. 二次编码后，信息解码比特错误率（BER，二次解码信息与一次编码信息的差距）
+    1. 二次编码后，图像的 PSNR、SSIM 变化，如果方便的话，最好加上 LPIPS 变化
+    1. 一次编码时的图像、二次编码时的图像、一次编码的信号残差、二次编码时的信号残差
+
+## 计划实验的模型
+
+1. SepMark。向图像中注入的水印可以供两个不同鲁棒性程度的解码器解码（Tracer 解码出完整水印验证来源，Detector 验证图像是否被篡改）。只针对 Detector 即可。
+
+## 备注
+
+1. AdvMark 并没有验证其方法对于模型的普遍性，只是验证了检测器的流通性。
+1. 冻结 encoder，只微调 decoder，这样就可以测试不同水印模型之间的流通性。
+1. 用非入侵式的方法来增加微调模块。新建一个 fine_tuning 文件夹，用继承的方式修改需要重写的方法。尽量把所有的东西都放到该 fine_tuning 文件夹中（除了跑通原模型所必要的数据集之类的）。这里需要注意 Python 包导入的问题，在 fine_tuning 文件夹中导入原模型的包因使用**绝对导入**，导入 fine_tuning 文件夹的内容则使用**直接导入**
+
 ## SepMark
 
 ### 实验目的
@@ -49,6 +69,8 @@ g_loss_on_double_watermark = (
 )
 ```
 
+[2025-03-06]
+
 训练结束后，修改 `test_Dual_Mark.py` 代码，使其编码两次水印，运行得到的 error_rate_C 依然很高（50% 左右浮动）。但是如果借助模型的 `validation()` 函数在测试集上运行，则结果正常：
 
 ```Python
@@ -70,4 +92,27 @@ for key in result_origin:
 pd.DataFrame([test_result_origin, test_result_double_watermark], index=[0]).to_markdown("test_result.md")
 ```
 
-猜测是 `test_Dual_Mark.py` 代码的问题，暂未找到原因。不过好在终于可以在测试集上检验微调效果，暂时
+猜测是 `test_Dual_Mark.py` 代码的问题，暂未找到原因。不过好在终于可以在测试集上检验微调效果。
+
+[2025-03-10]
+
+现在发现是 tmd 第二次生成的 message 的 message_range 错了，没有使用配置中的值，而是当时凭借记忆写了一个值 1，其实应该是 0.1。
+
+```Python
+double_message = torch.Tensor(np.random.choice([-1.0, 1.0], (images.shape[0], 128))).to('cuda')
+double_message = torch.Tensor(np.random.choice([-message_range, message_range], (images.shape[0], 128))).to('cuda')
+```
+
+## MBRS
+
+### 实验目的
+
+- 拿到微调前和微调后的 psnr、ssim、lpips、ber 数据
+
+### 实验结果
+
+### 实验过程
+
+可恶的作者没有提供预训练好的模型，只能在 SepMark 的数据集上自己重新训练。不过这次实验确定了要保留的实验数据，而像信号残差这种需要放图片的，由于不可能把所有的都放上去，所以最后肯定是放一两个就可以了，既然如此就到时候再说。
+
+[2025-03-11]

@@ -58,5 +58,6 @@ nav:
     - 深度伪造: 
         - 笔记: deepfake/note/main.md
         - 实验: deepfake/experiment/main.md
+        - 论文: deepfake/paper-statics/main.md
     - ICT: 
         - 笔记: ict/main.md
