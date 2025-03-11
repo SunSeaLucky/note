@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../..">
+        <link rel="prev" href="../../experiment/main/">
       
       
-        <link rel="next" href="../../experiment/main/">
+        <link rel="next" href="../../../ict/main/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>笔记 - SunSeaLucky's Note</title>
+        <title>论文 - SunSeaLucky's Note</title>
       
     
     
@@ -73,11 +73,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#deepfake-detection" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -108,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              笔记
+              论文
             
           </span>
         </div>
@@ -234,7 +229,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../../note/main/" class="md-tabs__link">
           
   
   深度伪造
@@ -363,19 +358,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../note/main/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -384,7 +370,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -415,10 +400,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../paper-statics/main/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -427,6 +419,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -522,8 +515,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -538,43 +529,112 @@
                   
 
 
-<h1 id="deepfake-detection">Deepfake Detection</h1>
-<p>做实验时发现可以使用 writer.add_text() 配合 pandas 生成参数表：</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="n">writer</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-</span><span id="__span-0-2">    <span class="s2">&quot;project_name&quot;</span><span class="p">:</span> <span class="n">project_name</span><span class="p">,</span> 
-</span><span id="__span-0-3">    <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">),</span>
-</span><span id="__span-0-4">    <span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="n">device</span><span class="p">,</span>
-</span><span id="__span-0-5">    <span class="s2">&quot;batch_size&quot;</span><span class="p">:</span> <span class="n">batch_size</span><span class="p">,</span>
-</span><span id="__span-0-6">    <span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="n">lr</span><span class="p">,</span>
-</span><span id="__span-0-7">    <span class="s2">&quot;epoch_number&quot;</span><span class="p">:</span> <span class="n">epoch_number</span><span class="p">,</span>
-</span><span id="__span-0-8">    <span class="s2">&quot;message_length&quot;</span><span class="p">:</span> <span class="n">message_length</span><span class="p">,</span>
-</span><span id="__span-0-9">    <span class="s2">&quot;noise_layers&quot;</span><span class="p">:</span> <span class="n">noise_layers</span><span class="p">,</span>
-</span><span id="__span-0-10">    <span class="s2">&quot;with_diffusion&quot;</span><span class="p">:</span> <span class="n">with_diffusion</span><span class="p">,</span>
-</span><span id="__span-0-11">    <span class="s2">&quot;only_decoder&quot;</span><span class="p">:</span> <span class="n">only_decoder</span><span class="p">,</span>
-</span><span id="__span-0-12">    <span class="s2">&quot;train_continue&quot;</span><span class="p">:</span> <span class="n">train_continue</span><span class="p">,</span>
-</span><span id="__span-0-13">    <span class="s2">&quot;train_continue_path&quot;</span><span class="p">:</span> <span class="n">train_continue_path</span><span class="p">,</span>
-</span><span id="__span-0-14">    <span class="s2">&quot;train_continue_epoch&quot;</span><span class="p">:</span> <span class="n">train_continue_epoch</span><span class="p">,</span>
-</span><span id="__span-0-15">    <span class="s2">&quot;save_images_number&quot;</span><span class="p">:</span> <span class="n">save_images_number</span><span class="p">,</span>
-</span><span id="__span-0-16">    <span class="s2">&quot;dataset_path&quot;</span><span class="p">:</span> <span class="n">dataset_path</span>
-</span><span id="__span-0-17"><span class="p">})</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-</span></code></pre></div></td></tr></table></div>
-<p>这样在 tensorboard 中就可以看到参数表了。</p>
+  <h1>论文</h1>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">write_date</th>
+<th style="text-align: left;">first_author</th>
+<th style="text-align: left;">journal_name</th>
+<th style="text-align: left;">study_key_word</th>
+<th style="text-align: left;">paper_title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">2020-07-16</td>
+<td style="text-align: left;">Ning Yu</td>
+<td style="text-align: left;">IJCAI</td>
+<td style="text-align: left;"><strong>主动取证</strong>、污染训练数据、污染生成器参数、图片赛道、图片隐写术</td>
+<td style="text-align: left;">Artificial Fingerprinting for Generative Models:Rooting Deepfake Attribution in Training Data</td>
+</tr>
+<tr>
+<td style="text-align: left;">2020-09-21</td>
+<td style="text-align: left;">Run <strong>Wang</strong></td>
+<td style="text-align: left;"><a href="https://dl.acm.org/doi/proceedings/10.1145/3474085">MM '21</a></td>
+<td style="text-align: left;"><strong>主动取证</strong>、污染图片、数字水印、溯源受害者但不能溯源模型</td>
+<td style="text-align: left;">FakeTagger: Robust Safeguards against DeepFake Dissemination via Provenance Tracking</td>
+</tr>
+<tr>
+<td style="text-align: left;">2021-10-17</td>
+<td style="text-align: left;">Zhaoyang Fang</td>
+<td style="text-align: left;">MM'21</td>
+<td style="text-align: left;">主动取证、鲁棒性水印、JPEG压缩、神经网络</td>
+<td style="text-align: left;">MBRS: Enhancing Robustness of DNN-based Watermarking by Mini-Batch of Real and Simulated JPEG Compression</td>
+</tr>
+<tr>
+<td style="text-align: left;">2022-09-27</td>
+<td style="text-align: left;">Qinwei <strong>Chang</strong></td>
+<td style="text-align: left;">MM'22</td>
+<td style="text-align: left;"><strong>主动取证</strong>、盲水印、自适应区域选择、信道参考、几何攻击、压缩攻击、相机录制攻击</td>
+<td style="text-align: left;">Blind Robust Video Watermarking Based on Adaptive Region Selection and Channel Reference</td>
+</tr>
+<tr>
+<td style="text-align: left;">2022-7-18</td>
+<td style="text-align: left;">Yuzhen <strong>Lin</strong></td>
+<td style="text-align: left;">ICME</td>
+<td style="text-align: left;">主动取证、换脸、脸部恢复、图像视频混合赛道</td>
+<td style="text-align: left;">SOURCE-ID-TRACKER: SOURCE FACE IDENTITY PROTECTION IN FACE SWAPPING</td>
+</tr>
+<tr>
+<td style="text-align: left;">2023-05-10</td>
+<td style="text-align: left;">Xiaoshuai <strong>Wu</strong></td>
+<td style="text-align: left;">IJCAI</td>
+<td style="text-align: left;"><strong>主动取证</strong>、污染图片、溯源受害者但不能溯源模型、深度可分离水印、不同鲁棒性的双解码器、深度水印</td>
+<td style="text-align: left;"><strong>SepMark</strong>: Deep Separable Watermarking for Unified Source Tracing and Deepfake Detection</td>
+</tr>
+<tr>
+<td style="text-align: left;">2023-05-31</td>
+<td style="text-align: left;">ywen</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">主动取证、扩散模型</td>
+<td style="text-align: left;">Tree-rings-watermarks-invisible-fingerprints-for-diffusion-images-Paper-Conference</td>
+</tr>
+<tr>
+<td style="text-align: left;">2023-10-23</td>
+<td style="text-align: left;">Hengchang <strong>Guo</strong></td>
+<td style="text-align: left;"><a href="https://dl.acm.org/doi/proceedings/10.1145/3581783">MM'23</a></td>
+<td style="text-align: left;">主动取证、任意分辨率、几何攻击、水印对齐、稀疏注入、分散注入</td>
+<td style="text-align: left;">Practical Deep Dispersed Watermarking with Synchronization</td>
+</tr>
+<tr>
+<td style="text-align: left;">2023-10-25</td>
+<td style="text-align: left;">Yunming <strong>Zhang</strong></td>
+<td style="text-align: left;">(CCF-A)<a href="https://www.myhuiban.com/journal/10">TIFS</a></td>
+<td style="text-align: left;"><strong>主动取证</strong>、双重防御</td>
+<td style="text-align: left;"><strong>Dual Defense</strong>: Adversarial, Traceable, and Invisible</td>
+</tr>
+<tr>
+<td style="text-align: left;">2023-11-02</td>
+<td style="text-align: left;">Tianyi <strong>Wang</strong></td>
+<td style="text-align: left;"><a href="https://cvpr.thecvf.com/Conferences/2025">CVPR</a></td>
+<td style="text-align: left;">主动取证</td>
+<td style="text-align: left;">Robust Identity Perceptual Watermark Against Deepfake Face Swapping</td>
+</tr>
+<tr>
+<td style="text-align: left;">2023-12-12</td>
+<td style="text-align: left;">Xuanyu <strong>Zhang</strong></td>
+<td style="text-align: left;"><a href="https://ieeexplore.ieee.org/xpl/conhome/10654794/proceeding">CVPR</a></td>
+<td style="text-align: left;"><strong>主动取证</strong>、图像篡改检测、<code>I2I(Image-to-Image)</code> 隐写术、<code>IBSN(Image-Bit Steganography)</code></td>
+<td style="text-align: left;">EditGuard: Versatile Image Watermarking for Tamper Localization and Copyright Protection</td>
+</tr>
+<tr>
+<td style="text-align: left;">2024-02-16</td>
+<td style="text-align: left;">Bang <strong>An</strong></td>
+<td style="text-align: left;">CVPR</td>
+<td style="text-align: left;"><strong>主动取证</strong>、水印评价、TPR</td>
+<td style="text-align: left;">WAVES: Benchmarking the Robustness of Image Watermarks</td>
+</tr>
+<tr>
+<td style="text-align: left;">2024-04-27</td>
+<td style="text-align: left;">Xiaoshuai <strong>Wu</strong></td>
+<td style="text-align: left;">IJCAI</td>
+<td style="text-align: left;"><strong>主动取证</strong>、被动增强、plug-and-play、对抗性水印、对抗转移性</td>
+<td style="text-align: left;">Are Watermarks Bugs for Deepfake Detectors? Rethinking Proactive Forensics</td>
+</tr>
+</tbody>
+</table>
 
 
 
